@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <link rel="stylesheet" href="./src/output.css"> -->
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body class="bg-[hsl(229_24%_87%)] flex justify-center items-center min-h-screen">
+    <div class="container bg-[hsl(0_0%_100%)] h-[62vh] w-[60vw] rounded-2xl flex">
+        <!-- Sidebar Image Container -->
+        <div class="img p-4 flex items-center">
+          <img src="./assets/images/bg-sidebar-desktop.svg" class="h-full object-cover" alt="">
+        </div>
+        <div class="contacts p-[5%] pl-[10%] text-[var(--MarineBlue) ">
+          <div class="first-heading">
+            <h1 class="font-bold text-3xl pb-2 text-[var(--MarineBlue)]">Personal info</h1>
+            <span class=" text-[hsl(231_11%_63%)]">Please Provide Your name, email address, phone number</span>
+          </div>
+          <div class="input-contact pt-4">
+            <div class="name flex flex-col mt-4 mb-6">
+                <span class="font-medium text-[15px]">Name</span>
+                <input class="border border-[var(--LightGray)] h-10 rounded-[5px] " type="text">
+            </div>
+            <div class="name flex flex-col mt-4 mb-6">
+                <span class="text-[15px] font-medium">Email Address</span>
+                <input class="border border-[var(--LightGray)] h-10 rounded-[5px] " type="text">
+            </div>
+            <div class="name flex flex-col mt-4 mb-6">
+                <span class="text-[15px] font-medium">Phone Number</span>
+                <input class="border border-[var(--LightGray)] h-10 rounded-[5px] " type="text">
+            </div>
+          </div>
+          <button class="h-[45px] border w-[120px] rounded-[10px] bg-[var(--MarineBlue)] text-white ml-[70%] mt-[14%]">Next Step</button>
+        </div>
+
+      </div>
+      
+  
+</body>
+</html>
