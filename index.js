@@ -6,9 +6,10 @@ let contactSection = document.querySelector(".contacts");
 let formSectionContent = document.querySelector(".input-contact");
 let changablePart = document.querySelector(".changablePart");
 let backBtn = document.querySelector(".back-btn");
+// let
 
 // console.log(changablePart.children);
-console.log(stepInfoChildren);
+// console.log(stepInfoChildren);
 
 // console.log(contactSection.children[0]);
 // console.log(formSectionContent);
@@ -43,7 +44,20 @@ let contactHeadingArray = [
 function areAllInputsFilled() {
   let inputs = document.querySelectorAll("input[required]");
   inputs = Array.from(inputs);
+  // console.log(inputs[0].value);
+  // let warningTab = document.querySelectorAll(".warning");
+  inputs.forEach((ele) => {
+    if (ele.value == "") {
+      let warningTab = ele.parentElement.children[0].children[1];
+      warningTab.classList.remove("hidden");
+    } else {
+      let warningTab = ele.parentElement.children[0].children[1];
+      warningTab.classList.add("hidden");
+    }
+  });
   inputs = inputs.every((input) => input.value.trim() !== "");
+  console.log(inputs);
+
   return inputs;
 }
 
@@ -51,6 +65,12 @@ nextStepBtn.addEventListener("click", (event) => {
   event.preventDefault();
   console.log(areAllInputsFilled());
   if (!areAllInputsFilled() && activeStepCounter < 2) {
+    // let warningTab = document.querySelectorAll(".warning");
+    // warningTab.forEach((ele) => {
+    //   ele.classList.remove("hidden");
+    // });
+    // console.log(warningTab.children);
+
     return;
   }
 
@@ -92,6 +112,9 @@ if (backBtn && !backBtn.disabled) {
       let oldPage = changablePart.children[activeStepCounter - 1];
       currentPage.classList.add("hidden");
       oldPage.classList.remove("hidden");
+      if (activeStepCounter == 1) {
+        backBtn.classList.add("opacity-0", "pointer-events-none");
+      }
     }
   });
 }
