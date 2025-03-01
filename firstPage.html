@@ -9,35 +9,115 @@
     <link rel="stylesheet" href="./style.css">
 </head>
 <body class="bg-[hsl(229_24%_87%)] flex justify-center items-center min-h-screen">
-    <div class="container bg-[hsl(0_0%_100%)] h-[62vh] w-[60vw] rounded-2xl flex">
+    <div class="container bg-[hsl(0_0%_100%)] h-[600px] w-[900px] rounded-2xl flex">
         <!-- Sidebar Image Container -->
-        <div class="img p-4 flex items-center">
+        <div class="img p-4 flex relative">
           <img src="./assets/images/bg-sidebar-desktop.svg" class="h-full object-cover" alt="">
-        </div>
-        <div class="contacts p-[5%] pl-[10%] text-[var(--MarineBlue) ">
-          <div class="first-heading">
-            <h1 class="font-bold text-3xl pb-2 text-[var(--MarineBlue)]">Personal info</h1>
-            <span class=" text-[hsl(231_11%_63%)]">Please Provide Your name, email address, phone number</span>
+          <div class="absolute flex p-8 flex-col" id="steps-parent">
+            <div class="first-one flex">
+              <div class="bg-[var(--LightBlue)] rounded-[50%] h-[30px] w-[30px] flex items-center justify-center" id="first-one">
+                <span class="">1</span>
+              </div>
+              <div class="step flex flex-col text-white ml-3">
+                <span class="text-[12px]">STEP 1</span>
+                <span class="font-extrabold text-[13px]">YOUR INFO</span>
+              </div>
+            </div>
+            <div class="second-one flex mt-8 text-[var(--LightBlue)]">
+              <div class=" border-2 border-[var(--LightBlue)] rounded-[50%] h-[30px] w-[30px] flex items-center justify-center" id="second-one">
+                <span class="text-white">2</span>
+              </div>
+              <div class="step flex flex-col text-white ml-3">
+                <span class="text-[12px] text-[var(--CoolGray)]">STEP 2</span>
+                <span class="font-extrabold text-[13px]">SELECT PLAN</span>
+              </div>
+            </div>
+            <div class="third-one flex mt-8 text-[var(--LightBlue)]">
+              <div class=" border-2 border-[var(--LightBlue)] rounded-[50%] h-[30px] w-[30px] flex items-center justify-center" id="third-one">
+                <span class="text-white">3</span>
+              </div>
+              <div class="step flex flex-col text-white ml-3">
+                <span class="text-[12px] text-[var(--CoolGray)]">STEP 3</span>
+                <span class="font-extrabold text-[13px]">ADD-ONS</span>
+              </div>
+            </div>
+            <div class="fourth-one flex mt-8 text-[var(--LightBlue)]">
+              <div class=" border-2 border-[var(--LightBlue)] rounded-[50%] h-[30px] w-[30px] flex items-center justify-center" id="fourth-one">
+                <span class="text-white">4</span>
+              </div>
+              <div class="step flex flex-col text-white ml-3">
+                <span class="text-[12px] text-[var(--CoolGray)]">STEP 4</span>
+                <span class="font-extrabold text-[13px]">SUMMARY</span>
+              </div>
+            </div>
+            
           </div>
-          <div class="input-contact pt-4">
-            <div class="name flex flex-col mt-4 mb-6">
-                <span class="font-medium text-[15px]">Name</span>
-                <input class="border border-[var(--LightGray)] h-10 rounded-[5px] " type="text">
+          
+        </div>
+        <div class=" contacts p-[5%] pl-[8%] text-[var(--MarineBlue) ">
+          <div class="first-heading w-[420px]">
+            <h1 class="font-extrabold text-3xl pb-2 text-[var(--MarineBlue)]">Personal info</h1>
+            <span class=" text-[hsl(231_11%_63%)] font-medium">Please provide your name, email address, phone number</span>
+          </div>
+          <form action="" id="form-field" class="hidden">
+            <div class="input-contact pt-4">
+              <div class="name flex flex-col mt-4 mb-6 pt-2 pb-2">
+                  <span class="font-medium text-[15px] mb-0.5">Name</span>
+                  <input class="border border-[var(--LightGray)] h-10 rounded-[5px]  " type="text" required>
+              </div>
+              <div class="name flex flex-col mt-4 mb-6 pt-2 pb-2">
+                  <span class="text-[15px] font-medium mb-0.5">Email Address</span>
+                  <input class="border border-[var(--LightGray)] h-10 rounded-[5px] " type="email" required>
+              </div>
+              <div class="name flex flex-col mt-4 mb-6 pt-2 pb-2">
+                  <span class="text-[15px] font-medium mb-0.5">Phone Number</span>
+                  <input class="border border-[var(--LightGray)] h-10 rounded-[5px] " type="tel" required>
+              </div>
             </div>
-            <div class="name flex flex-col mt-4 mb-6">
-                <span class="text-[15px] font-medium">Email Address</span>
-                <input class="border border-[var(--LightGray)] h-10 rounded-[5px] " type="text">
-            </div>
-            <div class="name flex flex-col mt-4 mb-6">
-                <span class="text-[15px] font-medium">Phone Number</span>
-                <input class="border border-[var(--LightGray)] h-10 rounded-[5px] " type="text">
+            <button  class="h-[45px] border w-[120px] rounded-[10px] bg-[var(--MarineBlue)] text-white ml-[70%] mt-[10%] font-medium" id="next-btn">Next Step</button>
+          </form>
+          <div class="secondPage">
+            <div class="cards flex mt-8">
+              <div class="first h-[170px] w-[140px] m-2 border  border-[var(--PurplishBlue)]  rounded-2xl ">
+                <div class="image m-[18px] mb-[50px]">
+                  <img src="./assets/images/icon-arcade.svg" alt="">
+                </div>
+                <div class="price-info flex flex-col">
+                  <span class="ml-[18px] text-[18px] font-bold">Arcade</span>
+                  <span class="text-[var(--CoolGray)] text-[15px] ml-4">$12/mo</span>
+                </div>
+                <!-- border-[var(--PurplishBlue)] -->
+              </div>
+              <div class="second h-[170px] w-[140px] m-2 border  border-[var(--CoolGray)] rounded-2xl">
+                <div class="image m-[18px] mb-[50px]">
+                  <img src="./assets/images/icon-advanced.svg" alt="">
+                </div>
+                <div class="price-info flex flex-col">
+                  <span class="ml-[18px] text-[18px] font-bold text-[var(--MarineBlue)]" >Advanced</span>
+                  <span class="text-[var(--CoolGray)] text-[15px] ml-4">$12/mo</span>
+                </div>
+              
+                </div>
+              <div class="third h-[170px] w-[140px] m-2 border rounded-2xl border-[var(--CoolGray)]">
+                <div class="image m-[18px] mb-[50px]">
+                  <img src="./assets/images/icon-pro.svg" alt="">
+                </div>
+                <div class="price-info flex flex-col">
+                  <span class="ml-[18px] text-[18px] font-bold">Pro   </span>
+                  <span class="text-[var(--CoolGray)] text-[15px] ml-4">$12/mo</span>
+                </div>
+               
+              </div>
             </div>
           </div>
-          <button class="h-[45px] border w-[120px] rounded-[10px] bg-[var(--MarineBlue)] text-white ml-[70%] mt-[14%]">Next Step</button>
+         
+       
         </div>
+
+    
 
       </div>
       
-  
+  <script src="./index.js"></script>
 </body>
 </html>
