@@ -64,7 +64,7 @@ nextStepBtn.addEventListener("click", (event) => {
     prevStep.children[0].style.color = "";
     prevStep.classList.add("bg-step-inactive");
     let newPage = changablePart.children[activeStepCounter];
-    backBtn.classList.remove("hidden");
+    backBtn.classList.remove("opacity-0", "pointer-events-none");
     let oldPage = changablePart.children[activeStepCounter - 1];
     newPage.classList.remove("hidden");
     oldPage.classList.add("hidden");
