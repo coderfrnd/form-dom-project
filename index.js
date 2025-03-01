@@ -54,7 +54,7 @@ nextStepBtn.addEventListener("click", (event) => {
     return;
   }
 
-  if (activeStepCounter < stepInfoChildren.length - 1) {
+  if (activeStepCounter < stepInfoChildren.length) {
     let currentStep = stepInfoChildren[activeStepCounter].children[0];
     currentStep.classList.remove("bg-step-inactive");
     currentStep.classList.add("bg-step-active");
