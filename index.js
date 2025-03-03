@@ -6,6 +6,59 @@ let contactSection = document.querySelector(".contacts");
 let formSectionContent = document.querySelector(".input-contact");
 let changablePart = document.querySelector(".changablePart");
 let backBtn = document.querySelector(".back-btn");
+let thirdPageCardElement = document.querySelectorAll(".first-portion");
+let thirdPage = document.querySelector(".thirdPage");
+let fourthPage = document.querySelector(".fourthPage");
+let totalCost = 0;
+
+// console.log(thirdPage.children);
+// console.log(thirdPageCardElement);
+
+thirdPage.addEventListener("click", (e) => {
+  if (e.target != thirdPage) {
+    // let lable = e.target.parentElement;
+    let label = e.target.closest("label");
+    if (!label) return;
+
+    let checkbox = label.querySelector(".online-checkbox");
+    let card = label.querySelector(".third-page-card");
+    let cost = card.querySelector(".cost");
+    // console.log(cost.textContent);
+    // if(card){
+    //   card.classList.add("border-[3px]", "border-[var(--PurplishBlue)]");
+    // }
+    // console.log(checkbox);
+    console.log(card);
+    if (checkbox) {
+      e.preventDefault();
+      checkbox.checked = !checkbox.checked;
+      if (checkbox.checked) {
+        card.classList.add("border-[3px]", "border-[var(--PurplishBlue)]");
+        let price = cost.textContent;
+        let number = price.match(/\d+/)[0];
+        number = parseInt(number);
+        totalCost = totalCost + number;
+      } else {
+        card.classList.remove("border-[3px]", "border-[var(--PurplishBlue)]");
+        let price = cost.textContent;
+        let number = price.match(/\d+/)[0];
+        number = parseInt(number);
+        totalCost = totalCost - number;
+      }
+    }
+    // let checkbox = lable.querySelector(".online-checkbox");
+    // console.log(checkbox.checked);
+    // // checkbox.checked = true;
+    // if (checkbox.checked) {
+    //   checkbox.checked = false;
+    // } else {
+    //   checkbox.checked = true;
+    // }
+    // console.log(checkbox.checked);
+  }
+  // console.log(e.target ! =);
+});
+
 // let
 
 // console.log(changablePart.children);
@@ -56,7 +109,7 @@ function areAllInputsFilled() {
     }
   });
   inputs = inputs.every((input) => input.value.trim() !== "");
-  console.log(inputs);
+  // console.log(inputs);
 
   return inputs;
 }
@@ -90,6 +143,14 @@ nextStepBtn.addEventListener("click", (event) => {
     oldPage.classList.add("hidden");
     activeStepCounter++;
     headingChangeFunction(activeStepCounter - 1);
+    if (activeStepCounter == 4) {
+      let price = fourthPage.querySelector(".price-sum");
+      let checkOutPrice = fourthPage.querySelector(".checkout-price");
+      // console.log(price);
+      price.textContent = `$ ${totalCost}/mo`;
+      checkOutPrice.textContent = `$ ${totalCost}/mo`;
+    }
+    // console.log(activeStepCounter);
   }
 });
 
@@ -106,7 +167,7 @@ if (backBtn && !backBtn.disabled) {
         stepInfoChildren[activeStepCounter - 1].children[0];
       oldSteperSection.classList.remove("bg-step-inactive");
       oldSteperSection.classList.add("bg-step-active");
-      console.log(oldSteperSection);
+      // console.log(oldSteperSection);
 
       let currentPage = changablePart.children[activeStepCounter];
       let oldPage = changablePart.children[activeStepCounter - 1];
@@ -116,6 +177,7 @@ if (backBtn && !backBtn.disabled) {
         backBtn.classList.add("opacity-0", "pointer-events-none");
       }
     }
+    headingChangeFunction(activeStepCounter - 1);
   });
 }
 function headingChangeFunction(num) {

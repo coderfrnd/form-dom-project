@@ -56,14 +56,14 @@
         </div>
 
         <div class="second-container flex-1">
-          <div class=" contacts pt-[52px] pl-[65px] pr-[80px] text-[var(--MarineBlue) h-[500px] ">
+          <div class=" contacts pt-[52px] pl-[65px] pr-[80px] text-[var(--MarineBlue)] h-[500px] ">
             <div class="first-heading w-[420px]">
               <h1 class="font-extrabold text-[32px] pb-2 text-[var(--MarineBlue)]">Personal info</h1>
               <span class=" text-[hsl(231_11%_63%)] font-medium">Please provide your name, email address, phone number</span>
             </div>
   
             <div class="changablePart">
-              <form id="form-field">
+              <form id="form-field" class="">
                 <div class="input-contact pt-4">
                   <div class="name flex flex-col mt-3 mb-3 pt-2 pb-2">
                     <div class="inputfield flex justify-between">
@@ -138,42 +138,54 @@
               </div>
             
               <div class="thirdPage hidden">
-                  <div class="third-page-first-card flex p-4 pl-6 pr-6 mt-10 justify-between border  border-[var(--LightGray)] rounded-[10px] hover:border-[var(--PurplishBlue)]">
-           
-            <div class="first-portion flex">  
-              <input type="checkbox" class="w-5 h-5 mt-3 border border-[var(--LightGray)]">
-            <div class="third-page-first-card-texts flex flex-col ml-6 ">
-              <span class="font-extrabold text-[var(--MarineBlue)]">Online service</span>
-              <span class="text-[var(--CoolGray)] font-medium text-[15px]">Access to multiplayer games</span>
-            </div>
-            
-            </div>
-            <span class="text-[var(--PurplishBlue)] font-medium">+$1/mo</span>
-                  </div>
-                  <div class="third-page-second-card flex p-4 pl-6 pr-6 mt-4 justify-between border  border-[var(--LightGray)] rounded-[10px] hover:border-[var(--PurplishBlue)]">
-           
-                    <div class="first-portion flex">  
-                      <input type="checkbox" class="w-5 h-5 mt-3 border border-[var(--LightGray)]">
-                    <div class="third-page-first-card-texts flex flex-col ml-6 ">
-                      <span class="font-extrabold text-[var(--MarineBlue)]">Larger Storage</span>
-                      <span class="text-[var(--CoolGray)] font-medium text-[15px]">Extra 1TB of cloud save</span>
-                    </div>
-                    
-                    </div>
-                    <span class="text-[var(--PurplishBlue)] font-medium">+$2/mo</span>
+                <label class="block cursor-pointer">
+                  <input type="checkbox" class="peer hidden">
+                  <div class="third-page-card flex p-4 pl-6 pr-6 mt-10 justify-between 
+                      border border-[var(--LightGray)] rounded-[10px] hover:border-[var(--PurplishBlue)] 
+                      peer-checked:border-2 peer-checked:border-[var(--PurplishBlue)] transition-all">
+              
+                      <div class="first-portion flex">
+                          <input type="checkbox" class=" online-checkbox w-5 h-5 mt-3 border border-[var(--LightGray)]">
+                          <div class="third-page-first-card-texts flex flex-col ml-6">
+                              <span class="font-extrabold text-[var(--MarineBlue)]">Online service</span>
+                              <span class="text-[var(--CoolGray)] font-medium text-[15px]">Access to multiplayer games</span>
                           </div>
-                          <div class="third-page-third-card flex p-4 pl-6 pr-6 mt-4 justify-between border  border-[var(--LightGray)] rounded-[10px] hover:border-[var(--PurplishBlue)]">
+                      </div>
+                      <span class="cost text-[var(--PurplishBlue)] font-medium">+$1/mo</span>
+                  </div>
+              </label>
+              <label  class="block cursor-pointer">
+                <input type="checkbox" class="peer hidden">
+                <div class="third-page-card flex p-4 pl-6 pr-6 mt-4 justify-between border  border-[var(--LightGray)] rounded-[10px] hover:border-[var(--PurplishBlue)]  peer-checked:border-2 peer-checked:border-[var(--PurplishBlue)] transition-all">
            
-                            <div class="first-portion flex">  
-                              <input type="checkbox" class="w-5 h-5 mt-3 border border-[var(--LightGray)]">
-                            <div class="third-page-first-card-texts flex flex-col ml-6 ">
-                              <span class="font-extrabold text-[var(--MarineBlue)]">Customizable profile</span>
-                              <span class="text-[var(--CoolGray)] font-medium text-[15px]">Custom theme on your profile</span>
-                            </div>
-                            
-                            </div>
-                            <span class="text-[var(--PurplishBlue)] font-medium">+$2/mo</span>
-                                  </div>
+                  <div class="first-portion flex">  
+                    <input type="checkbox" class="online-checkbox w-5 h-5 mt-3 border border-[var(--LightGray)]">
+                  <div class="third-page-first-card-texts flex flex-col ml-6 ">
+                    <span class="font-extrabold text-[var(--MarineBlue)]">Larger Storage</span>
+                    <span class="text-[var(--CoolGray)] font-medium text-[15px]">Extra 1TB of cloud save</span>
+                  </div>
+                  
+                  </div>
+                  <span class=" cost text-[var(--PurplishBlue)] font-medium">+$2/mo</span>
+                        </div>
+              </label>
+              <label class="block cursor-pointer">
+                <input type="checkbox" class="peer hidden">
+                <div class="third-page-card flex p-4 pl-6 pr-6 mt-4 justify-between border  border-[var(--LightGray)] rounded-[10px] hover:border-[var(--PurplishBlue)]  peer-checked:border-2 peer-checked:border-[var(--PurplishBlue)] transition-all">
+           
+                  <div class="first-portion flex">  
+                    <input type="checkbox" class=" online-checkbox  w-5 h-5 mt-3 border border-[var(--LightGray)]">
+                  <div class="third-page-first-card-texts flex flex-col ml-6 ">
+                    <span class="font-extrabold text-[var(--MarineBlue)]">Customizable profile</span>
+                    <span class="text-[var(--CoolGray)] font-medium text-[15px]">Custom theme on your profile</span>
+                  </div>
+                  
+                  </div>
+                  <span class=" cost text-[var(--PurplishBlue)] font-medium">+$2/mo</span>
+                        </div>
+              </label>
+                
+                        
               </div>
             <div class="fourthPage pt-10 pr-6 hidden">
               <div class="fourth-page-first-part flex p-[15px] bg-[#FAFBFF] rounded-[10px] justify-between">
@@ -188,7 +200,7 @@
               </div>
               <div class="flex justify-between p-[20px] pt-[26px]">
                 <span class="text-[var(--CoolGray)] text-[15px] font-medium">Total (per month)</span>
-                <span class="text-[var(--PurplishBlue)] font-extrabold text-xl">$ 12/mo</span>
+                <span class=" checkout-price text-[var(--PurplishBlue)] font-extrabold text-xl">$ 12/mo</span>
 
               </div>
             </div>
