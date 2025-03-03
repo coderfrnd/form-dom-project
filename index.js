@@ -11,25 +11,80 @@ let thirdPageCards = document.querySelectorAll(".first-portion");
 let thirdPage = document.querySelector(".thirdPage");
 let fourthPage = document.querySelector(".fourthPage");
 let subscriptionContainer = document.querySelector(".fourth-page-container");
-let totalAmount = 12;
+let totalAmount = 0;
 let selectedPlans = [];
 let subscriptionType = "Arcade";
 let checkoutAddon = document.getElementById("checkout-addons");
+let selectedPlansAmount = 12;
 
 secondPage.addEventListener("click", (event) => {
   let selectedCard = event.target.closest(".first, .second, .third");
+  // let toggleBtn = event.target.closest(".toggle");
   if (selectedCard) {
     let priceDetails = selectedCard.querySelector(".price-info");
-    // console.log(priceDetails);
     if (priceDetails) {
       subscriptionType = priceDetails.children[0].textContent;
       let price = priceDetails.children[1].textContent;
       price = price.match(/\d+/)[0];
-      totalAmount = parseInt(price) - totalAmount + totalAmount;
+      selectedPlansAmount = parseInt(price);
+      console.log(selectedPlansAmount);
+      // totalAmount = parseInt(price) - totalAmount + totalAmount;
+    }
+  }
+  if (event.target.closest(".toggle")) {
+    let toggleBtn = event.target.closest(".toggle").checked;
+    let planAmount = document.querySelectorAll(".plans-amount");
+    let cardsPriceSection = document.querySelectorAll(".price-info");
+    let planExtraText = document.createElement("span");
+    planExtraText.textContent = "2 Month free";
+    planExtraText.classList.add(
+      "text-[var(--MarineBlue)]",
+      "text-[13px]",
+      "ml-4",
+      "plan-prices-free-month",
+      "pt-[3px]",
+      "pb-[3px]",
+      "font-medium"
+      // "text-"
+    );
+    planAmount = Array.from(planAmount);
+    if (toggleBtn) {
+      console.log(cardsPriceSection);
+      selectedPlansAmount = selectedPlansAmount * 10;
+      planAmount.forEach((ele, ind) => {
+        ele.textContent = ele.textContent.match(/\d+/)[0];
+        // selectedPlansAmount = parseInt(selectedPlansAmount) * 10;
+        ele.textContent = `$ ${parseInt(ele.textContent) * 10}/mo`;
+
+        console.log(ele.textContent);
+
+        // console.log(selectedPlansAmount);
+
+        let planExtraTextClone = planExtraText.cloneNode(true);
+        cardsPriceSection[ind].appendChild(planExtraTextClone);
+        let plansCard = cardsPriceSection[ind].parentElement;
+        plansCard.classList.add("h-[188px]");
+        // console.log(plansCard);
+      });
+    } else {
+      let planExtraFreeMonthSpan = document.querySelectorAll(
+        ".plan-prices-free-month"
+      );
+      selectedPlansAmount = selectedPlansAmount / 10;
+      planAmount.forEach((ele, ind) => {
+        ele.textContent = ele.textContent.match(/\d+/)[0];
+        ele.textContent = `$ ${parseInt(ele.textContent) / 10}/mo`;
+        // console.log(ele);
+
+        planExtraFreeMonthSpan[ind].remove();
+        let plansCard = cardsPriceSection[ind].parentElement;
+        console.log(plansCard);
+        plansCard.classList.remove("h-[188px]");
+        plansCard.classList.add("h-[165px]");
+      });
     }
   }
 });
-
 thirdPage.addEventListener("click", (event) => {
   if (event.target != thirdPage) {
     let label = event.target.closest("label");
@@ -37,7 +92,6 @@ thirdPage.addEventListener("click", (event) => {
     let checkbox = label.querySelector(".online-checkbox");
     let card = label.querySelector(".third-page-card");
     let cost = card.querySelector(".cost");
-    // console.log(card);
     if (checkbox) {
       event.preventDefault();
       checkbox.checked = !checkbox.checked;
@@ -73,28 +127,22 @@ thirdPage.addEventListener("click", (event) => {
         totalAmount = totalAmount - number;
         selectedPlans = selectedPlans.filter((text) => {
           let addOnsText = text.querySelector("span");
-          if (text.textContent == span.textContent) {
-            console.log("yes");
-            return addOnsText.textContent != span.textContent;
-          }
+          return addOnsText.textContent != span.textContent;
         });
         console.log(selectedPlans);
       }
       let subscriptionDiv = document.createElement("div");
       subscriptionDiv.setAttribute("id", "subscription-name-preview");
       subscriptionDiv.classList.add("flex", "flex-col");
-      // checkoutAddon.innerHTML = "";
       selectedPlans.forEach((element) => {
         subscriptionDiv.appendChild(element);
       });
-
       if (subscriptionContainer.querySelector("#subscription-name-preview")) {
         let existingDiv = subscriptionContainer.querySelector(
           "#subscription-name-preview"
         );
         existingDiv.remove();
       }
-
       subscriptionContainer.appendChild(subscriptionDiv);
     }
   }
@@ -124,7 +172,6 @@ nextButton.addEventListener("click", (event) => {
   if (!areAllInputsFilled() && currentStep < 2) {
     return;
   }
-
   if (currentStep < stepChildren.length) {
     let currentStepElement = stepChildren[currentStep].children[0];
     currentStepElement.classList.remove("bg-step-inactive");
@@ -144,13 +191,21 @@ nextButton.addEventListener("click", (event) => {
     if (currentStep == 4) {
       let price = fourthPage.querySelector(".price-sum");
       let checkoutPrice = fourthPage.querySelector(".checkout-price");
-      price.textContent = `$ ${totalAmount}/mo`;
-      checkoutPrice.textContent = `$ ${totalAmount}/mo`;
+      price.textContent = `$ ${selectedPlansAmount}/mo`;
+      // totalAmount = totalAmount + selectedPlansAmount;
+      console.log(totalAmount);
+
+      checkoutPrice.textContent = `$ ${totalAmount + selectedPlansAmount}/mo`;
       let subscription = fourthPage.querySelector(".subscription-name");
       subscription.children[0].textContent = subscriptionType;
-      // console.log(subscription);
+      console.log(nextButton);
+      nextButton.classList.add(
+        "bg-[var(--PurplishBlue)]",
+        "hover:bg-[var(--PastelBlue)]"
+      );
+      console.log(nextButton);
+      nextButton.innerText = "Confirm";
     }
-    // console.log(currentStep);
   }
 });
 
@@ -165,8 +220,6 @@ if (backButton && !backButton.disabled) {
       let oldStepSection = stepChildren[currentStep - 1].children[0];
       oldStepSection.classList.remove("bg-step-inactive");
       oldStepSection.classList.add("bg-step-active");
-      // console.log(oldStepSection);
-
       let currentPage = dynamicContent.children[currentStep];
       let oldPage = dynamicContent.children[currentStep - 1];
       currentPage.classList.add("hidden");
@@ -200,4 +253,10 @@ let contactHeadings = [
 function updateHeading(index) {
   headingElements[0].textContent = contactHeadings[index]["first-heading"];
   headingElements[1].textContent = contactHeadings[index]["second-heading"];
+  nextButton.classList.remove(
+    "bg-[var(--PurplishBlue)]",
+    "hover:bg-[var(--PastelBlue)]"
+  );
+  nextButton.innerText = "Next Step";
+  console.log("yess");
 }
