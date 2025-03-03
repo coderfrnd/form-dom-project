@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>MultiStepForm</title>
     <!-- <link rel="stylesheet" href="./src/output.css"> -->
     <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
     <link rel="stylesheet" href="./style.css">
@@ -201,7 +201,7 @@
                   <div class="subscription-name flex flex-col ">
                     <span class="text-[16px] text-[var(--MarineBlue)] font-extrabold">Advanced (Monthly)</span>
                       <!-- <span class="text-[13px] text-[var(--CoolGray)] font-medium">Change</span> -->
-                      <span class="text-[hsl(231,11%,63%)] text-sm underline hover:text-[hsl(243,100%,62%)] cursor-pointer">
+                      <span class="text-[hsl(231,11%,63%)] text-sm underline hover:text-[hsl(243,100%,62%)] cursor-pointer change-plan-option">
                         Change
                       </span>
                     </div>
@@ -219,7 +219,6 @@
 
               </div>
             </div>
-             
             </div>
           
            
@@ -230,7 +229,14 @@
             <button class="border p-[12px] pl-[20px] pr-[20px] rounded-[10px] bg-[var(--MarineBlue)] text-white font-medium hover:bg-[#164988]" id="next-btn">Next Step</button>
           </div>
         </div>
-      
+        <div class="submit-page flex-1 hidden">
+          <div class="flex flex-col justify-center items-center mt-[200px]">
+            <img src="./assets/images/icon-thank-you.svg" alt="">
+            <h4 class="font-bold text-[30px] pt-6">Thank You !</h4>
+            <p class="p-4 pl-22 text-[16px]  pr-18 text-[var(--CoolGray)] font-medium">Thanks for confirming your subscription! We hope you have fun using our platform. If you ever need support, please feel free to email us at support@loremgaming.com.</p>
+          </div>
+         
+        </div>  
 
     
        

@@ -16,10 +16,27 @@ let selectedPlans = [];
 let subscriptionType = "Arcade";
 let checkoutAddon = document.getElementById("checkout-addons");
 let selectedPlansAmount = 12;
+let changePlanBtn = document.querySelector(".change-plan-option");
+
+changePlanBtn.addEventListener("click", () => {
+  let newPage = dynamicContent.children[currentStep - 3];
+  backButton.classList.remove("opacity-0", "pointer-events-none");
+  let oldPage = dynamicContent.children[currentStep - 1];
+  newPage.classList.remove("hidden");
+  oldPage.classList.add("hidden");
+  let currentStepElement = stepChildren[currentStep - 3].children[0];
+  currentStepElement.classList.remove("bg-step-inactive");
+  currentStepElement.classList.add("bg-step-active");
+  currentStepElement.children[0].style.color = "black";
+  let previousStepElement = stepChildren[currentStep - 1].children[0];
+  previousStepElement.classList.remove("bg-step-active");
+  previousStepElement.children[0].style.color = "";
+  previousStepElement.classList.add("bg-step-inactive");
+  currentStep = 2;
+});
 
 secondPage.addEventListener("click", (event) => {
   let selectedCard = event.target.closest(".first, .second, .third");
-  // let toggleBtn = event.target.closest(".toggle");
   if (selectedCard) {
     let priceDetails = selectedCard.querySelector(".price-info");
     if (priceDetails) {
@@ -28,7 +45,6 @@ secondPage.addEventListener("click", (event) => {
       price = price.match(/\d+/)[0];
       selectedPlansAmount = parseInt(price);
       console.log(selectedPlansAmount);
-      // totalAmount = parseInt(price) - totalAmount + totalAmount;
     }
   }
   if (event.target.closest(".toggle")) {
@@ -53,13 +69,9 @@ secondPage.addEventListener("click", (event) => {
       selectedPlansAmount = selectedPlansAmount * 10;
       planAmount.forEach((ele, ind) => {
         ele.textContent = ele.textContent.match(/\d+/)[0];
-        // selectedPlansAmount = parseInt(selectedPlansAmount) * 10;
         ele.textContent = `$ ${parseInt(ele.textContent) * 10}/mo`;
 
         console.log(ele.textContent);
-
-        // console.log(selectedPlansAmount);
-
         let planExtraTextClone = planExtraText.cloneNode(true);
         cardsPriceSection[ind].appendChild(planExtraTextClone);
         let plansCard = cardsPriceSection[ind].parentElement;
@@ -167,6 +179,13 @@ function areAllInputsFilled() {
   return inputs;
 }
 nextButton.addEventListener("click", (event) => {
+  // console.log(currentStep);
+  if (currentStep == 4) {
+    let secondContainer = document.querySelector(".second-container");
+    secondContainer.classList.add("hidden");
+    let finalSubmitPage = document.querySelector(".submit-page");
+    finalSubmitPage.classList.remove("hidden");
+  }
   event.preventDefault();
   console.log(areAllInputsFilled());
   if (!areAllInputsFilled() && currentStep < 2) {
