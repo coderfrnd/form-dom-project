@@ -24,15 +24,10 @@ changePlanBtn.addEventListener("click", () => {
   let oldPage = dynamicContent.children[currentStep - 1];
   newPage.classList.remove("hidden");
   oldPage.classList.add("hidden");
-  let currentStepElement = stepChildren[currentStep - 3].children[0];
-  currentStepElement.classList.remove("bg-step-inactive");
-  currentStepElement.classList.add("bg-step-active");
-  currentStepElement.children[0].style.color = "black";
-  let previousStepElement = stepChildren[currentStep - 1].children[0];
-  previousStepElement.classList.remove("bg-step-active");
-  previousStepElement.children[0].style.color = "";
-  previousStepElement.classList.add("bg-step-inactive");
+  currentStepIndicator(currentStep - 3);
+  previousStepIndicator(currentStep);
   currentStep = 2;
+  updateHeading(currentStep - 1);
 });
 
 secondPage.addEventListener("click", (event) => {
@@ -61,7 +56,6 @@ secondPage.addEventListener("click", (event) => {
       "pt-[3px]",
       "pb-[3px]",
       "font-medium"
-      // "text-"
     );
     planAmount = Array.from(planAmount);
     if (toggleBtn) {
@@ -70,13 +64,11 @@ secondPage.addEventListener("click", (event) => {
       planAmount.forEach((ele, ind) => {
         ele.textContent = ele.textContent.match(/\d+/)[0];
         ele.textContent = `$ ${parseInt(ele.textContent) * 10}/mo`;
-
         console.log(ele.textContent);
         let planExtraTextClone = planExtraText.cloneNode(true);
         cardsPriceSection[ind].appendChild(planExtraTextClone);
         let plansCard = cardsPriceSection[ind].parentElement;
         plansCard.classList.add("h-[188px]");
-        // console.log(plansCard);
       });
     } else {
       let planExtraFreeMonthSpan = document.querySelectorAll(
@@ -86,8 +78,6 @@ secondPage.addEventListener("click", (event) => {
       planAmount.forEach((ele, ind) => {
         ele.textContent = ele.textContent.match(/\d+/)[0];
         ele.textContent = `$ ${parseInt(ele.textContent) / 10}/mo`;
-        // console.log(ele);
-
         planExtraFreeMonthSpan[ind].remove();
         let plansCard = cardsPriceSection[ind].parentElement;
         console.log(plansCard);
@@ -164,12 +154,13 @@ headingElements = Array.from(headingElements);
 function areAllInputsFilled() {
   let inputs = document.querySelectorAll("input[required]");
   inputs = Array.from(inputs);
-  // console.log(inputs[0].value);
-  // let warningTab = document.querySelectorAll(".warning");
   inputs.forEach((element) => {
     if (element.value == "") {
       let warningTab = element.parentElement.children[0].children[1];
       warningTab.classList.remove("hidden");
+      // console.log(element.parentElement.children[1]);
+      let inputBox = element.parentElement.children[1];
+      inputBox.classList.add("border-[2px]", "border-red-500");
     } else {
       let warningTab = element.parentElement.children[0].children[1];
       warningTab.classList.add("hidden");
@@ -192,14 +183,9 @@ nextButton.addEventListener("click", (event) => {
     return;
   }
   if (currentStep < stepChildren.length) {
-    let currentStepElement = stepChildren[currentStep].children[0];
-    currentStepElement.classList.remove("bg-step-inactive");
-    currentStepElement.classList.add("bg-step-active");
-    currentStepElement.children[0].style.color = "black";
-    let previousStepElement = stepChildren[currentStep - 1].children[0];
-    previousStepElement.classList.remove("bg-step-active");
-    previousStepElement.children[0].style.color = "";
-    previousStepElement.classList.add("bg-step-inactive");
+    // updateStepIndicatorNextButton(currentStep);
+    currentStepIndicator(currentStep);
+    previousStepIndicator(currentStep);
     let newPage = dynamicContent.children[currentStep];
     backButton.classList.remove("opacity-0", "pointer-events-none");
     let oldPage = dynamicContent.children[currentStep - 1];
@@ -211,9 +197,7 @@ nextButton.addEventListener("click", (event) => {
       let price = fourthPage.querySelector(".price-sum");
       let checkoutPrice = fourthPage.querySelector(".checkout-price");
       price.textContent = `$ ${selectedPlansAmount}/mo`;
-      // totalAmount = totalAmount + selectedPlansAmount;
       console.log(totalAmount);
-
       checkoutPrice.textContent = `$ ${totalAmount + selectedPlansAmount}/mo`;
       let subscription = fourthPage.querySelector(".subscription-name");
       subscription.children[0].textContent = subscriptionType;
@@ -232,13 +216,8 @@ if (backButton && !backButton.disabled) {
   backButton.addEventListener("click", () => {
     if (currentStep > 1) {
       currentStep--;
-      let currentStepSection = stepChildren[currentStep].children[0];
-      currentStepSection.classList.remove("bg-step-active");
-      currentStepSection.children[0].style.color = "";
-      currentStepSection.classList.add("bg-step-inactive");
-      let oldStepSection = stepChildren[currentStep - 1].children[0];
-      oldStepSection.classList.remove("bg-step-inactive");
-      oldStepSection.classList.add("bg-step-active");
+      previousStepIndicator(currentStep + 1);
+      currentStepIndicator(currentStep - 1);
       let currentPage = dynamicContent.children[currentStep];
       let oldPage = dynamicContent.children[currentStep - 1];
       currentPage.classList.add("hidden");
@@ -278,4 +257,16 @@ function updateHeading(index) {
   );
   nextButton.innerText = "Next Step";
   console.log("yess");
+}
+function currentStepIndicator(currentStep) {
+  let currentStepElement = stepChildren[currentStep].children[0];
+  currentStepElement.classList.remove("bg-step-inactive");
+  currentStepElement.classList.add("bg-step-active");
+  currentStepElement.children[0].style.color = "black";
+}
+function previousStepIndicator(currentStep) {
+  let previousStepElement = stepChildren[currentStep - 1].children[0];
+  previousStepElement.classList.remove("bg-step-active");
+  previousStepElement.children[0].style.color = "";
+  previousStepElement.classList.add("bg-step-inactive");
 }
