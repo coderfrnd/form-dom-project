@@ -34,6 +34,7 @@ secondPage.addEventListener("click", (event) => {
   let selectedCard = event.target.closest(".first, .second, .third");
   if (selectedCard) {
     let priceDetails = selectedCard.querySelector(".price-info");
+    // selectedCard.classList.
     if (priceDetails) {
       subscriptionType = priceDetails.children[0].textContent;
       let price = priceDetails.children[1].textContent;
@@ -42,8 +43,8 @@ secondPage.addEventListener("click", (event) => {
       console.log(selectedPlansAmount);
     }
   }
-  if (event.target.closest(".toggle")) {
-    let toggleBtn = event.target.closest(".toggle").checked;
+  if (event.target.closest(".toggleBtnCheckbox")) {
+    let toggleBtn = event.target.closest(".toggleBtnCheckbox").checked;
     let planAmount = document.querySelectorAll(".plans-amount");
     let cardsPriceSection = document.querySelectorAll(".price-info");
     let planExtraText = document.createElement("span");
@@ -99,7 +100,7 @@ thirdPage.addEventListener("click", (event) => {
       checkbox.checked = !checkbox.checked;
       let span = card.querySelector("span");
       if (checkbox.checked) {
-        card.classList.add("border-[3px]", "border-[var(--PurplishBlue)]");
+        card.classList.add("border-2", "border-[var(--PurplishBlue)]");
         let price = cost.textContent;
         let number = price.match(/\d+/)[0];
         number = parseInt(number);
